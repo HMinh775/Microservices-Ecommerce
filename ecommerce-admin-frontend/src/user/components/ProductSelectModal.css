@@ -1,0 +1,255 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.4s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #1c1c1c 0%, #0a0a0a 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(212, 175, 55, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 700px;
+  width: 90%;
+  color: #fff;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(30px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  gap: 35px;
+  margin-bottom: 35px;
+  align-items: flex-start;
+}
+
+.modal-product-img {
+  width: 220px;
+  height: 280px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.modal-info h2 {
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.modal-info .brand {
+  color: #999;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.modal-info .current-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #d4af37;
+  margin: 15px 0;
+}
+
+.modal-form-group {
+  margin-bottom: 25px;
+}
+
+.modal-form-group label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.size-color-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.option-btn {
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  color: #ccc;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.option-btn:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #fff;
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.option-btn.selected {
+  border-color: #d4af37;
+  background: #d4af37;
+  color: #000;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 5px;
+  border-radius: 40px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quantity-control button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.quantity-control button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #d4af37;
+}
+
+.quantity-control button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quantity-control input {
+  width: 40px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-confirm {
+  background: #d4af37;
+  color: #000;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  background: #e5c158;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+}
+
+.btn-confirm:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff !important;
+}
+
+/* Stock status style */
+.stock-status {
+  font-size: 13px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.stock-status.in-stock {
+  color: #66bb6a;
+}
+
+.stock-status.out-of-stock {
+  color: #ff6b6b;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 25px;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .modal-product-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .size-color-options {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  }
+}

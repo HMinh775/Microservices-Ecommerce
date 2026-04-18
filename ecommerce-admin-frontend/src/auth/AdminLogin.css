@@ -1,0 +1,136 @@
+/* AdminLogin.css - Minimalist Luxury Style */
+:root {
+  --admin-bg: #fdfdfd;
+  --admin-accent: #b89c6d; /* Soft Gold */
+  --admin-text: #1a1a1a;
+  --admin-border: #e0e0e0;
+}
+
+.admin-login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--admin-bg);
+  font-family: 'Inter', -apple-system, sans-serif;
+  padding: 20px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  padding: 50px 40px;
+  border-radius: 4px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  border: 1px solid var(--admin-border);
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-logo {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--admin-text);
+  margin-bottom: 8px;
+  text-decoration: none;
+  display: block;
+}
+
+.admin-logo span {
+  color: var(--admin-accent);
+}
+
+.admin-subtitle {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 40px;
+}
+
+/* FORM */
+.admin-form-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.admin-form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--admin-border);
+  border-radius: 2px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 0 1px var(--admin-accent);
+}
+
+.admin-btn-login {
+  width: 100%;
+  padding: 16px;
+  background: var(--admin-text);
+  color: #fff;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.admin-btn-login:hover {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+.admin-btn-login:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.admin-error {
+  background: #fff5f5;
+  color: #c53030;
+  padding: 12px;
+  border-radius: 2px;
+  font-size: 13px;
+  margin-bottom: 25px;
+  border-left: 3px solid #c53030;
+  text-align: left;
+}
+
+.admin-back-link {
+  margin-top: 30px;
+  display: inline-block;
+  font-size: 13px;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.admin-back-link:hover {
+  color: var(--admin-text);
+}

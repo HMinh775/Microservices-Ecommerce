@@ -1,0 +1,71 @@
+.detail-section-v2 {
+  margin-bottom: 30px;
+}
+
+.detail-section-v2 h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--lux-text);
+  border-bottom: 1px solid var(--lux-border);
+  padding-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.info-grid-v3 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.info-row span {
+  color: var(--lux-text-dim);
+  font-weight: 500;
+}
+
+.order-items-minimal {
+  background: #fcfcfd;
+  border-radius: 16px;
+  padding: 8px 16px;
+  border: 1px solid var(--lux-border-strong);
+}
+
+.minimal-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--lux-border);
+}
+
+.minimal-item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--lux-text);
+}
+
+.item-meta {
+  font-size: 11px;
+  color: var(--lux-text-dim);
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.item-price {
+  font-weight: 800;
+  color: #b8860b;
+  font-size: 15px;
+}

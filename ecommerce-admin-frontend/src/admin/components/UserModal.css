@@ -1,0 +1,25 @@
+/* ============================================================
+   User Modal Styles
+   ============================================================ */
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toggle-label {
+  margin: 0;
+}
+
+.toggle-status {
+  font-size: 13px;
+}
+
+.status-active {
+  color: var(--green);
+}
+
+.status-locked {
+  color: var(--red);
+}

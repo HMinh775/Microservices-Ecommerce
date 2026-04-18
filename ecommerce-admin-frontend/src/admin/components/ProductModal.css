@@ -1,0 +1,24 @@
+/* ============================================================
+   Product Modal Styles
+   ============================================================ */
+
+.img-preview-container {
+  margin-top: 10px;
+}
+
+.img-preview {
+  width: 100px;
+  border-radius: 5px;
+}
+
+.btn-add-variant-small {
+  width: auto !important;
+  padding: 4px 12px !important;
+}
+
+.variants-empty-msg {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 8px 0;
+}

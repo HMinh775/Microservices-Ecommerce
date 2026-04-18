@@ -1,0 +1,42 @@
+/* Shared with OrderDetail for consistency */
+.detail-grid-v2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.detail-section-v2 h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: var(--lux-text);
+  border-bottom: 1px solid var(--lux-border);
+  padding-bottom: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.info-row span {
+  color: var(--lux-text-dim);
+}
+
+.amount-accent {
+  font-size: 20px;
+  font-weight: 800;
+  color: #b8860b;
+}
+
+.warning-box {
+  background: #fef2f2;
+  color: #ef4444;
+  padding: 15px 24px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  font-size: 14px;
+  border: 1px solid #fee2e2;
+}
