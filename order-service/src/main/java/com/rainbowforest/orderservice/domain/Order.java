@@ -37,6 +37,9 @@ public class Order {
     // Để tránh việc Order Service phải truy cập trực tiếp DB của User Service
     @Column(name = "user_id")
     private Long userId;
+
+    @Column(name = "user_name")
+    private String userName; // Lưu tên để hiển thị nhanh
     
     @Column(name = "shipping_address")
     private String shippingAddress; // Shop quần áo thì cần địa chỉ giao hàng nhé!

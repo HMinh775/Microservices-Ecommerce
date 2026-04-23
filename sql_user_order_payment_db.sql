@@ -70,31 +70,31 @@ INSERT INTO orders (id, ordered_date, shipping_address, status, total_amount, us
 (8,  '2024-06-14 13:30:00', '7 Điện Biên Phủ, Bình Thạnh, TP.HCM',        'COMPLETED',  1540000, 4);
 
 -- Chi tiết đơn hàng
--- (variant_id khớp với thứ tự INSERT product_variants ở sql_product_db.sql)
-INSERT INTO order_items (id, price_at_purchase, product_name, quantity, subtotal, variant_id, variant_info, order_id) VALUES
+-- Cập nhật: Thêm cột image để lưu ảnh sản phẩm tại thời điểm mua
+INSERT INTO order_items (id, price_at_purchase, product_name, quantity, subtotal, variant_id, variant_info, image, order_id) VALUES
 -- Đơn 1: Áo Thun Trắng M + Quần Jean Indigo 30
-(1,  179000, 'Áo Thun Basic Cổ Tròn',      2, 358000,  2,  'Trắng / M',          1),
-(2,  850000, 'Quần Jean Slim Fit 511',      2, 1700000, 27, 'Xanh Indigo / 30',  1),
+(1,  179000, 'Áo Thun Basic Cổ Tròn',      2, 358000,  2,  'Trắng / M',          '1.jpg', 1),
+(2,  850000, 'Quần Jean Slim Fit 511',      2, 1700000, 27, 'Xanh Indigo / 30',  '6.jpg', 1),
 -- Đơn 2: Váy Hoa Nhí S
-(3,  1200000,'Váy Hoa Nhí Vintage A-line', 1, 1200000, 44, 'Hoa Nhí Đỏ / S',    2),
+(3,  1200000,'Váy Hoa Nhí Vintage A-line', 1, 1200000, 44, 'Hoa Nhí Đỏ / S',    '10.jpg', 2),
 -- Đơn 3: Áo Sơ Mi Trắng M + Mũ Bucket
-(4,  420000, 'Áo Sơ Mi Slim Fit Oxford',   1, 420000,  13, 'Trắng / M',          3),
-(5,  350000, 'Mũ Bucket Hat Reversible',   2, 700000,  63, 'Đen-Trắng / One S',  3),
+(4,  420000, 'Áo Sơ Mi Slim Fit Oxford',   1, 420000,  13, 'Trắng / M',          '3.jpg', 3),
+(5,  350000, 'Mũ Bucket Hat Reversible',   2, 700000,  63, 'Đen-Trắng / One S',  '4.jpg', 3),
 -- Đơn 4: Áo Polo Navy L + Thắt Lưng Đen 90
-(6,  2490000,'Áo Polo Classic Piqué',      1, 2490000, 11, 'Xanh Navy / L',      4),
-(7,  890000, 'Thắt Lưng Da Bò Full Grain', 1, 890000,  61, 'Đen / 90cm',         4),
+(6,  2490000,'Áo Polo Classic Piqué',      1, 2490000, 11, 'Xanh Navy / L',      '2.jpg', 4),
+(7,  890000, 'Thắt Lưng Da Bò Full Grain', 1, 890000,  61, 'Đen / 90cm',         '5.jpg', 4),
 -- Đơn 5: Hoodie Xám M + Short Cargo Be 29
-(8,  450000, 'Áo Hoodie Oversize Fleece',  1, 450000,  18, 'Xám Tiêu / M',       5),
-(9,  380000, 'Quần Short Cargo Kaki',      1, 380000,  35, 'Be / 29',            5),
+(8,  450000, 'Áo Hoodie Oversize Fleece',  1, 450000,  18, 'Xám Tiêu / M',       '4.jpg', 5),
+(9,  380000, 'Quần Short Cargo Kaki',      1, 380000,  35, 'Be / 29',            '8.jpg', 5),
 -- Đơn 6: Áo Polo Đỏ L + Đầm Maxi Trắng M + Túi Tote Đen
-(10, 2490000,'Áo Polo Classic Piqué',      1, 2490000, 10, 'Đỏ / L',             6),
-(11, 990000, 'Đầm Maxi Linen Mùa Hè',     1, 990000,  52, 'Trắng Kem / M',      6),
-(12, 299000, 'Túi Tote Canvas In Logo',    1, 299000,  57, 'Đen / One Size',     6),
+(10, 2490000,'Áo Polo Classic Piqué',      1, 2490000, 10, 'Đỏ / L',             '2.jpg', 6),
+(11, 990000, 'Đầm Maxi Linen Mùa Hè',     1, 990000,  52, 'Trắng Kem / M',      '2.jpg', 6),
+(12, 299000, 'Túi Tote Canvas In Logo',    1, 299000,  57, 'Đen / One Size',     '3.jpg', 6),
 -- Đơn 7: Áo Khoác Bomber Đen L (Cancelled)
-(13, 550000, 'Áo Khoác Bomber Y2K',        1, 550000,  23, 'Đen / L',            7),
+(13, 550000, 'Áo Khoác Bomber Y2K',        1, 550000,  23, 'Đen / L',            '5.jpg', 7),
 -- Đơn 8: Quần Tây Đen 30 + Chân Váy Đen M
-(14, 650000, 'Quần Tây Âu Slim',           1, 650000,  31, 'Đen / 30',           8),
-(15, 350000, 'Chân Váy Chữ A Kaki',        2, 700000,  47, 'Đen / M',            8);
+(14, 650000, 'Quần Tây Âu Slim',           1, 650000,  31, 'Đen / 30',           '7.jpg', 8),
+(15, 350000, 'Chân Váy Chữ A Kaki',        2, 700000,  47, 'Đen / M',            '1.jpg', 8);
 
 
 -- ============================================================

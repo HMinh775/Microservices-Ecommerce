@@ -13,5 +13,6 @@ public interface UserService {
     void deleteUser(Long id);
 
     User findUserByEmail(String email);
-    void updatePassword(String email, String newPassword);
+    boolean updatePassword(String email, String newPassword);
+    void changePassword(Long id, String currentPassword, String newPassword) throws Exception;
 }

@@ -1,74 +1,76 @@
-# 💎 LUXE - Premium Microservices E-Commerce with AI 💎
+# 💎 LUXE - High-Speed Microservices E-Commerce with AI 💎
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.x-brightgreen)](https://spring.io/projects/spring-boot)
 [![React](https://img.shields.io/badge/React-18.x-blue)](https://react.dev/)
-[![Gemini AI](https://img.shields.io/badge/AI-Google%20Gemini-orange)](https://deepmind.google/technologies/gemini/)
+[![Llama 3.1](https://img.shields.io/badge/AI-Llama%203.1%20(Groq)-orange)](https://groq.com/)
 [![MySQL](https://img.shields.io/badge/Database-MySQL-blue)](https://www.mysql.com/)
+[![Redis](https://img.shields.io/badge/Cache-Redis-red)](https://redis.io/)
 
-LUXE là một nền tảng thương mại điện tử hiện đại được xây dựng trên kiến trúc **Microservices** mạnh mẽ, sở hữu giao diện **Luxury Concept** tinh tế và tích hợp **Trí tuệ nhân tạo (AI)** để mang lại trải nghiệm mua sắm đẳng cấp.
+LUXE là một hệ thống thương mại điện tử cao cấp, vận hành trên kiến trúc **Microservices** hiện đại, kết hợp giao diện **Luxury Design** và trợ lý ảo **Llama 3.1 AI** siêu tốc.
 
 ---
 
 ## ✨ Điểm Nổi Bật (Key Features)
 
-### 🤖 Trợ Lý Ảo AI (Google Gemini Integration)
-- Một Chatbot AI thực thụ được tích hợp trực tiếp, biết tư vấn khách hàng dựa trên **dữ liệu sản phẩm thực tế** từ database.
-- Tự động phản hồi về giá cả, mẫu mã và chính sách cửa hàng 24/7.
+### ⚡ Trợ Lý AI Siêu Tốc (Groq Cloud & Llama 3.1)
+- **Ultra-Fast Response:** Sử dụng mô hình **Llama 3.1 8B** qua **Groq API**, phản hồi gần như tức thì (< 500ms).
+- **Autonomous Ordering:** AI có khả năng hiểu ý định mua hàng và tự động tạo đơn hàng ngay trong khung chat mà không cần qua nhiều bước.
+- **Real-time Consulting:** Tư vấn sản phẩm thông minh dựa trên dữ liệu thực tế từ Product Service.
 
-### 🎨 Giao Diện Luxury (Premium UI)
-- Phong cách tối giản, sang trọng (Dark mode & Gold accent).
-- Trải nghiệm mượt mà với Hiệu ứng Glassmorphism và Typography tinh tế từ Google Fonts.
+### 🏗️ Kiến Trúc Microservices Chuẩn
+- Hệ thống chia nhỏ thành các dịch vụ độc lập: `User`, `Product`, `Order`, `Payment`.
+- **Service Discovery (Eureka)** và **API Gateway** giúp quản lý request tập trung, bảo mật và cân bằng tải.
+- Giao tiếp giữa các service qua **Feign Client** và tối ưu hiệu năng bằng **Redis Caching**.
 
-### 🔐 Bảo Mật & Quản Trị (Admin & Security)
-- Hệ thống **Phân quyền (RBAC)**: Tách biệt hoàn toàn luồng người dùng và Quản trị viên.
-- Trang Admin Login bảo mật, Dashboard quản lý đơn hàng và sản phẩm chuyên sâu.
+### 🎨 Giao Diện Luxury (Premium UI/UX)
+- Ngôn ngữ thiết kế sang trọng với hiệu ứng **Glassmorphism**, Dark Mode và các điểm nhấn Gold tinh tế.
+- Trải nghiệm mượt mà với Typography hiện đại và các hiệu ứng chuyển cảnh cao cấp.
 
-### 💳 Thanh Toán Đa Kênh (Smart Payment)
-- **VietQR:** Tự động tạo mã QR ngân hàng (Vietcombank) chính xác đến từng đồng.
-- **MoMo QR:** Tích hợp phương thức thanh toán ví điện tử MoMo cực nhanh.
+### 💳 Hệ Thống Thanh Toán Đa Kênh
+- Tích hợp sẵn: **VietQR (Tự động tạo mã thanh toán)**, **MoMo** và **VNPay**.
+- Luồng xử lý đơn hàng tự động hoàn toàn từ lúc đặt hàng đến khi cập nhật trạng thái.
 
 ---
 
 ## 🏗️ Kiến Trúc Hệ Thống (Architecture)
 
-Dự án sử dụng mô hình Microservices với các thành phần chính:
-
 | Service Name | Technology | Description |
 | :--- | :--- | :--- |
 | **Gateway Server** | Spring Cloud Gateway | Cổng kết nối duy nhất, điều phối và bảo mật các luồng request. |
 | **Eureka Server** | Spring Cloud Netflix | Trung tâm đăng ký và khám phá dịch vụ (Service Discovery). |
-| **User Service** | Spring Boot / JPA | Quản lý người dùng, phân quyền và bảo mật Admin. |
-| **Catalog Service** | Spring Boot / MySQL | Quản lý kho hàng, sản phẩm và biến thể. |
-| **Order Service** | Spring Boot / Feign | Xử lý quy trình đặt hàng và giỏ hàng. |
-| **Payment Service** | Spring Boot | Tích hợp các giải pháp cổng thanh toán QR Code. |
-| **Frontend** | React / Vite / CSS | Giao diện người dùng cao cấp và tương tác AI. |
+| **User Service** | Spring Boot / JWT | Quản lý người dùng, phân quyền (RBAC) và bảo mật Admin. |
+| **Catalog Service** | Spring Boot / MySQL | Quản lý kho hàng, sản phẩm và biến thể (Variants). |
+| **Order Service** | Spring Boot / Feign | Xử lý quy trình đặt hàng, giỏ hàng và tích hợp Redis. |
+| **Payment Service** | Spring Boot | Tích hợp các giải pháp cổng thanh toán QR Code & VNPay. |
+| **Frontend** | React JS / Vite / CSS | Giao diện người dùng cao cấp và tương tác AI Chatbot. |
 
 ---
 
 ## 🛠️ Công Nghệ Sử Dụng (Tech Stack)
 
-- **Backend:** Java 17+, Spring Boot 3, Spring Data JPA, Spring Cloud (Eureka, Gateway, Feign).
-- **Frontend:** React JS, Vite, Axios, Google Gemini API Client.
-- **Database:** MySQL (Lưu trữ dữ liệu), SQL Scripts tích hợp sẵn.
-- **Tools:** Maven, Git, Postman.
+- **Backend:** Java 17+, Spring Boot 3, Spring Data JPA, Spring Cloud, Spring Security.
+- **Frontend:** React JS, Vite, Axios, Google Fonts (Outfit/Playfair Display).
+- **AI Stack:** Llama 3.1 8B, Groq Cloud API (High-speed Inference Engine).
+- **Infrastructure:** MySQL, Redis Caching, Maven, Git.
 
 ---
 
 ## 🚀 Hướng Dẫn Khởi Chạy (Quick Start)
 
-1. **Khởi động Middleware:** Đảm bảo MySQL đã chạy và import các file `.sql` trong thư mục gốc.
-2. **Khởi động Backend:** 
-   - Chạy `eureka-server` đầu tiên (Cổng 8761).
-   - Chạy `api-gateway` (Cổng 8900).
-   - Chạy các dịch vụ còn lại (`user-service`, `product-catalog-service`, `order-service`, `payment-service`).
+1. **Khởi động Middleware:** Đảm bảo MySQL và Redis đã sẵn sàng.
+2. **Khởi động Backend (Theo thứ tự):** 
+   - `eureka-server` (Cổng 8761)
+   - `api-gateway` (Cổng 8900)
+   - Các dịch vụ: `user-service`, `product-catalog-service`, `order-service`, `payment-service`.
 3. **Khởi động Frontend:**
    - Vào thư mục `ecommerce-admin-frontend`.
-   - Chạy `npm install` sau đó `npm run dev`.
-   - Truy cập `http://localhost:5173`.
+   - Chạy `npm install` và `npm run dev`.
+   - Truy cập: `http://localhost:5173`.
 
 ---
 
 ## 📬 Liên Hệ
 Dự án được thực hiện nhằm trình diễn khả năng xây dựng hệ thống phân tán và tích hợp AI hiện đại. 
 
-**Chúc bạn có trải nghiệm mua sắm tuyệt vời tại LUXE!** 🥂
+**Chúc bạn có trải nghiệm tuyệt vời tại LUXE!** 🥂
+

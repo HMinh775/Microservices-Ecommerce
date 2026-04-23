@@ -176,8 +176,8 @@ public class ProductController {
                 
                 product.setImage(fileName);
             } else {
-                // Nếu không up ảnh mới, giữ lại ảnh cũ
-                product.setImage(existingProduct.getImage());
+                // Chỉ giữ lại ảnh cũ nếu ở frontend không nhấn "Gỡ bỏ ảnh" (tức là field image trong JSON gửi lên khác null)
+                product.setImage(product.getImage()); 
             }
 
             // Bảo toàn ID và quan hệ
@@ -221,6 +221,38 @@ public class ProductController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Lỗi: " + e.getMessage());
+        }
+    }
+
+    // 8. LẤY CHI TIẾT BIẾN THỂ THEO ID (Phục vụ Re-order và đồng bộ Cart)
+    @GetMapping("/variants/{variantId}")
+    public ResponseEntity<Object> getVariantById(@PathVariable Long variantId) {
+        try {
+            com.rainbowforest.productcatalogservice.entity.ProductVariant variant = productService.getVariantById(variantId);
+            if (variant != null) {
+                // Chúng ta muốn lấy cả ảnh từ Product cha
+                // Do @JsonBackReference nên product có thể bị null khi serialize
+                // Vậy nên ta trả về một Map chứa đủ thông tin cần thiết cho Frontend
+                java.util.Map<String, Object> response = new java.util.HashMap<>();
+                response.put("id", variant.getId());
+                response.put("sku", variant.getSku());
+                response.put("color", variant.getColor());
+                response.put("size", variant.getSize());
+                response.put("price", variant.getPrice());
+                response.put("stockQuantity", variant.getStockQuantity());
+                
+                if (variant.getProduct() != null) {
+                    response.put("productId", variant.getProduct().getId());
+                    response.put("productName", variant.getProduct().getProductName());
+                    response.put("image", variant.getProduct().getImage());
+                    response.put("brand", variant.getProduct().getBrand());
+                }
+                
+                return ResponseEntity.ok(response);
+            }
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

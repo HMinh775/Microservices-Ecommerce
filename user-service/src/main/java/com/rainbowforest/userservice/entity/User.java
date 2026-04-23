@@ -22,7 +22,7 @@ public class User {
 
     @NotBlank(message = "Mật khẩu không được để trống")
     @Size(min = 4, message = "Mật khẩu phải có ít nhất 4 ký tự")
-    @Column (name = "user_password", nullable = false, length = 50)
+    @Column (name = "user_password", nullable = false, length = 100)
     private String userPassword;
     @Column (name = "active")
     private int active;

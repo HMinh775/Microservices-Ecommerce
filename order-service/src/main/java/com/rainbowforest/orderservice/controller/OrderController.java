@@ -131,6 +131,12 @@ public ResponseEntity<Page<Order>> getAllOrders(
     return ResponseEntity.ok(orders);
 }
 
+@GetMapping("/user/{userId}")
+public ResponseEntity<List<Order>> getOrdersByUserId(@PathVariable Long userId) {
+    List<Order> orders = orderService.getOrdersByUserId(userId);
+    return ResponseEntity.ok(orders);
+}
+
     // Hàm helper tạo Object Order từ Cart
     private Order createOrder(List<Item> cart, Long userId) {
         Order order = new Order();

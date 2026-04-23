@@ -44,6 +44,9 @@ public class Item {
     @Column(name = "variant_info") 
     private String variantInfo; // Ví dụ: "Size: L, Màu: Đen"
 
+    @Column(name = "image")
+    private String image;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     @JsonIgnore

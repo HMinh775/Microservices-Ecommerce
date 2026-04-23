@@ -85,4 +85,9 @@ public class ProductServiceImpl implements ProductService {
         }
         return false;
     }
+
+    @Override
+    public ProductVariant getVariantById(Long variantId) {
+        return productVariantRepository.findById(variantId).orElse(null);
+    }
 }

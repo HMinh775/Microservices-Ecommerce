@@ -1,0 +1,155 @@
+.filter-bar {
+    padding: 24px 0;
+    margin: 20px 0;
+    transition: var(--transition-smooth);
+}
+
+.filter-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-gold);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+}
+
+/* Tìm kiếm */
+.filter-search {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.filter-search input {
+    width: 100%;
+    padding: 16px 20px 16px 48px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    color: var(--text-light);
+    font-size: 15px;
+    transition: var(--transition-smooth);
+}
+
+.filter-search input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.filter-search::before {
+    content: '🔍';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+.filter-search input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    outline: none;
+}
+
+/* Nhóm lọc */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-group input {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: var(--text-light);
+    font-size: 14px;
+    width: 130px;
+    transition: var(--transition-smooth);
+}
+
+.filter-group input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.filter-group input:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+}
+
+.filter-group select {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: var(--text-light);
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.filter-group select:focus {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+}
+
+.filter-group select option {
+    background: var(--bg-card);
+    color: var(--text-light);
+}
+
+/* Nút làm mới */
+.btn-reset {
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--border-gold);
+    border-radius: 100px;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+}
+
+.btn-reset:hover {
+    background: var(--gold);
+    color: var(--bg-dark);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.btn-reset:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .filter-container {
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-search {
+        min-width: 100%;
+    }
+    
+    .filter-group {
+        justify-content: space-between;
+    }
+    
+    .filter-group input {
+        flex: 1;
+    }
+}

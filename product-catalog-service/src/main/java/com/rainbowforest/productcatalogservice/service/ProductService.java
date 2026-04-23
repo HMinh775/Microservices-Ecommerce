@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import com.rainbowforest.productcatalogservice.entity.Product;
+import com.rainbowforest.productcatalogservice.entity.ProductVariant;
 
 public interface ProductService {
     public Page<Product> getAllProduct(Pageable pageable);
@@ -21,4 +22,7 @@ public interface ProductService {
     
     // THÊM: Giảm tồn kho biến thể
     public boolean decreaseVariantStock(Long variantId, int quantity);
+
+    // THÊM: Lấy thông tin biến thể theo ID
+    public ProductVariant getVariantById(Long variantId);
 }

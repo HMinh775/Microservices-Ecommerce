@@ -12,4 +12,5 @@ public interface OrderService {
     Order getOrderById(Long id);
     Page<Order> getAllOrders(Pageable pageable);
     Order createOrderFromRequest(CreateOrderRequest request);
+    List<Order> getOrdersByUserId(Long userId);
 }

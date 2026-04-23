@@ -8,6 +8,7 @@ import com.rainbowforest.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,9 @@ public class UserController {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // 1. LẤY TẤT CẢ NGƯỜI DÙNG CÓ PHÂN TRANG
     @GetMapping
@@ -82,11 +86,30 @@ public class UserController {
     public ResponseEntity<User> login(@Valid @RequestBody User loginRequest) {
         try {
             User user = userService.getUserByName(loginRequest.getUserName());
-            if (user != null && user.getUserPassword() != null && user.getUserPassword().equals(loginRequest.getUserPassword())) {
-                if (user.getActive() != 1) {
-                    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            if (user != null && user.getUserPassword() != null) {
+                String dbPassword = user.getUserPassword();
+                String rawPassword = loginRequest.getUserPassword();
+                
+                boolean matches = false;
+                // Kiểm tra nếu mật khẩu trong DB đã được băm bằng BCrypt (thường bắt đầu bằng $2a$)
+                if (dbPassword.startsWith("$2a$")) {
+                    matches = passwordEncoder.matches(rawPassword, dbPassword);
+                } else {
+                    // Fallback cho mật khẩu plaintext cũ
+                    matches = dbPassword.equals(rawPassword);
+                    // TỰ ĐỘNG NÂNG CẤP: Nếu khớp plaintext, hãy băm và lưu lại ngay
+                    if (matches) {
+                        user.setUserPassword(passwordEncoder.encode(rawPassword));
+                        userService.saveUser(user);
+                    }
                 }
-                return new ResponseEntity<>(user, HttpStatus.OK);
+
+                if (matches) {
+                    if (user.getActive() != 1) {
+                        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+                    }
+                    return new ResponseEntity<>(user, HttpStatus.OK);
+                }
             }
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
@@ -161,13 +184,16 @@ public class UserController {
             PasswordResetOTP resetOTP = new PasswordResetOTP(email, otp, 5);
             otpRepository.save(resetOTP);
 
-            // Gửi email
+            System.out.println("Gửi OTP thành công cho: " + email);
             emailService.sendOTP(email, otp);
             return new ResponseEntity<>("Mã OTP đã được gửi đến email của bạn", HttpStatus.OK);
 
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            System.err.println("CRITICAL ERROR in forgotPassword: " + e.getMessage());
             e.printStackTrace();
-            return new ResponseEntity<>("Lỗi khi gửi email: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            String detailedError = e.getMessage();
+            if (e.getCause() != null) detailedError += " (Gốc: " + e.getCause().getMessage() + ")";
+            return new ResponseEntity<>("Lỗi hệ thống: " + detailedError, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -200,6 +226,10 @@ public class UserController {
             String email = request.get("email");
             String otp = request.get("otp");
             String newPassword = request.get("newPassword");
+            
+            if (newPassword == null || newPassword.length() < 4) {
+                return new ResponseEntity<>("Mật khẩu mới phải có ít nhất 4 ký tự", HttpStatus.BAD_REQUEST);
+            }
 
             Optional<PasswordResetOTP> otpOpt = otpRepository.findByEmailAndOtp(email, otp);
             if (otpOpt.isPresent()) {
@@ -207,15 +237,43 @@ public class UserController {
                     return new ResponseEntity<>("Mã OTP đã hết hạn", HttpStatus.BAD_REQUEST);
                 }
 
-                userService.updatePassword(email, newPassword);
+                boolean updated = userService.updatePassword(email, newPassword);
+                if (!updated) {
+                    return new ResponseEntity<>("Không thể cập nhật mật khẩu. Email không tồn tại.", HttpStatus.NOT_FOUND);
+                }
+                
                 otpRepository.deleteByEmail(email);
 
                 return new ResponseEntity<>("Cập nhật mật khẩu thành công", HttpStatus.OK);
             }
             return new ResponseEntity<>("Mã OTP không chính xác hoặc đã hết hạn", HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            System.err.println("CRITICAL ERROR in resetPassword: " + e.getMessage());
             e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            String detailedError = e.getMessage();
+            if (e.getCause() != null) detailedError += " (Gốc: " + e.getCause().getMessage() + ")";
+            return new ResponseEntity<>("Lỗi hệ thống khi đổi mật khẩu: " + detailedError, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // 11. ĐỔI MẬT KHẨU TỪ PROFILE (CÓ XÁC THỰC HIỆN TẠI)
+    @PostMapping("/{id}/change-password")
+    public ResponseEntity<?> changePassword(@PathVariable("id") Long id, @RequestBody Map<String, String> request) {
+        try {
+            String currentPassword = request.get("currentPassword");
+            String newPassword = request.get("newPassword");
+            
+            if (newPassword == null || newPassword.length() < 4) {
+                return new ResponseEntity<>("Mật khẩu mới phải có ít nhất 4 ký tự", HttpStatus.BAD_REQUEST);
+            }
+            
+            userService.changePassword(id, currentPassword, newPassword);
+            return new ResponseEntity<>("Đổi mật khẩu thành công!", HttpStatus.OK);
+            
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Throwable e) {
+            return new ResponseEntity<>("Lỗi hệ thống", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

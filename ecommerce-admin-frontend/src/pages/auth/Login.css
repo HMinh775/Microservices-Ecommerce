@@ -1,0 +1,184 @@
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: white;
+}
+
+.login-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  position: relative;
+}
+
+/* Đưa logo về luồng hiển thị tự nhiên để tránh đè lên tiêu đề */
+.login-left .brand {
+  margin-bottom: 40px;
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--bg-dark);
+  text-decoration: none;
+}
+
+.login-left .brand span {
+  color: var(--gold);
+}
+
+.login-box {
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-box h2 {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  color: var(--bg-dark);
+  line-height: 1;
+}
+
+.login-box p {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.login-box .form-group {
+  margin-bottom: 24px;
+}
+
+.login-box label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+}
+
+.login-box .form-input {
+  width: 100%;
+  padding: 18px 24px;
+  border: 1.5px solid #eee;
+  border-radius: 12px;
+  background: #fdfdfd;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s;
+  color: var(--bg-dark);
+}
+
+.login-box .form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.password-toggle-btn:hover {
+  color: var(--gold);
+}
+
+.password-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Nút Đăng Nhập - Fix hiển thị cực kỳ nổi bật */
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 18px 0;
+  margin-top: 30px;
+  background-color: #000000 !important; /* Buộc dùng nền đen để không bị tàng hình */
+  color: #d4af37 !important; /* Màu vàng Gold rực rỡ */
+  border: 1px solid #d4af37;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.btn-submit:hover {
+  background-color: #d4af37 !important;
+  color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+}
+
+.btn-submit:disabled {
+  background-color: #333333 !important;
+  color: #666666 !important;
+  border-color: #444;
+  cursor: not-allowed;
+}
+
+.login-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.login-footer a {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  color: var(--gold-dark);
+}
+
+.login-right {
+  flex: 1.2;
+  background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.login-right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.1), transparent);
+}
+
+@media (max-width: 900px) {
+  .login-right { display: none; }
+  .login-left { padding: 40px 24px; }
+  .login-left .brand { margin-top: 20px; }
+}

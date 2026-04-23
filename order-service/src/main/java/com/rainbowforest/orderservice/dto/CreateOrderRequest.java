@@ -29,5 +29,6 @@ public class CreateOrderRequest {
         private BigDecimal subtotal;
         private Long variantId;
         private String variantInfo;
+        private String image;
     }
 }
